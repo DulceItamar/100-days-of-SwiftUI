@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7061C1E42A37991B003B5A2E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		70BB1E962A297A56006B9382 /* GuessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70BB1E992A297A56006B9382 /* GuessTheFlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheFlagApp.swift; sourceTree = "<group>"; };
 		70BB1E9B2A297A56006B9382 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +56,7 @@
 				70BB1E9B2A297A56006B9382 /* ContentView.swift */,
 				70BB1E9D2A297A57006B9382 /* Assets.xcassets */,
 				70BB1E9F2A297A57006B9382 /* Preview Content */,
+				7061C1E42A37991B003B5A2E /* README.md */,
 			);
 			path = GuessTheFlag;
 			sourceTree = "<group>";

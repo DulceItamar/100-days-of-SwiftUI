@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+struct FlagImage: View {
+    var flag : String
+    
+    var body: some View {
+        Image(flag)
+            .renderingMode(.original)
+            .clipShape(Capsule())
+            .shadow(radius: 5)
+    }
+    
+}
+
 struct ContentView: View {
     
     @State private var showingScore = false
@@ -16,6 +28,7 @@ struct ContentView: View {
     @State private var score: Int = 0
     
     @State private var counter: Int = 1
+
     
    @State var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland","Russia", "Spain", "UK", "US"].shuffled()
     
@@ -56,10 +69,8 @@ struct ContentView: View {
                             flagTapped(number)
                            
                         } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 5)
+
+                            FlagImage(flag: countries[number])
                         }
                     }
                 }
@@ -93,22 +104,17 @@ struct ContentView: View {
             } else {
                 Text("Congrats! You've finished the game. Your final score is \(score)")
             }
-
-          
         }
-   
-
-        
     }
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct!"
-            score += 1
+            score += 10
        
         } else {
             scoreTitle = "Wrong!"
-            score -= 1
+            score -= 10
         }
 
         showingScore = true
