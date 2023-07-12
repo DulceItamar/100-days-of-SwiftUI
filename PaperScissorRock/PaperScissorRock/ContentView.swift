@@ -121,19 +121,10 @@ struct ContentView: View {
                 Text("Your score is \(scorePlayer) and computer score is \(scoreComputer)")
             } else {
                 Text("Game is over. \(match). Your final score is \(scorePlayer) and computer score is \(scoreComputer)")
-                
             }
         }
-
-        
-        
-
-        
-
     }
     
-    
-
 //    Who is the winner in this round? Computer or player?
     func whoIsTheWinnerRounds( player: String) {
         
@@ -157,7 +148,6 @@ struct ContentView: View {
         
     }
 
-    
 //    New Match
     func playAgain(){
         
@@ -166,7 +156,6 @@ struct ContentView: View {
         counter = 1
         isComputerTurn = false
     }
-    
 
     func nextRound(){
         options.shuffle()
@@ -185,11 +174,7 @@ struct ContentView: View {
             
         }
     }
-    
 
-    
-    
-    
 }
 
 

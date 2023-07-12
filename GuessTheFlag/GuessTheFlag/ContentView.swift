@@ -34,6 +34,15 @@ struct ContentView: View {
     
     @State var correctAnswer = Int.random(in: 0...2)
     
+    
+    @State private var animationAmount: Double = 0
+    @State private var selectedFlag = -10
+    
+// Animations
+    @State var xpos: CGFloat = 200
+    
+    
+    
     var body: some View {
         
         ZStack {
@@ -60,19 +69,33 @@ struct ContentView: View {
                         Text(countries[correctAnswer])
                             .font(.largeTitle.weight(.semibold))
                     }
-             
                     .padding()
                     
                     ForEach(0..<3) { number in
+                        
                         Button {
-                            //flag was tapped
-                            flagTapped(number)
-                           
+
+                                flagTapped(number)
+                            
                         } label: {
 
                             FlagImage(flag: countries[number])
+                                .rotationEffectMofier(amount: selectedFlag == number ? 360 : 0)
+                                .opacity(selectedFlag == -10 || selectedFlag == number ? 1 : 0.25)
+                                .position(x:  selectedFlag == -10 || selectedFlag == number ? 180: -100, y: selectedFlag == -10 || selectedFlag == number ? 50: -10 )
+
+                                .animation(.easeOut(duration: 2.0), value: selectedFlag)
+                            
+//                                .scaleEffect(selectedFlag == -10 || selectedFlag == number ? 1 : 0.5)//
+                                
+               
+
                         }
+                        
+//                        .accessibilityIdentifier("FlagBotton")
                     }
+                  
+                    
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
@@ -85,6 +108,7 @@ struct ContentView: View {
                 Text("Score: \(score)")
                     .foregroundColor(.white)
                     .font(.title.bold())
+                    
                 
                 Spacer()
             }
@@ -108,9 +132,13 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
+
+        selectedFlag = number
+        
         if number == correctAnswer {
             scoreTitle = "Correct!"
             score += 10
+           
        
         } else {
             scoreTitle = "Wrong!"
@@ -118,17 +146,16 @@ struct ContentView: View {
         }
 
         showingScore = true
-        
+       
     }
     
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
         counter += 1
-    }
-    
-    
 
+        selectedFlag = -10
+    }
     
     func playAgain(){
         countries.shuffle()
@@ -138,8 +165,27 @@ struct ContentView: View {
 
     }
     
+    
 
 }
+
+struct RotationEffectModifier: ViewModifier {
+    let amount: Double
+
+    
+    func body(content: Content) -> some View {
+        content
+            .rotation3DEffect(.degrees(amount), axis: (x:0, y:1, z: 0))
+    }
+}
+
+extension View {
+    func rotationEffectMofier(amount: Double) -> some View {
+        self.modifier(RotationEffectModifier(amount: amount))
+    }
+}
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
